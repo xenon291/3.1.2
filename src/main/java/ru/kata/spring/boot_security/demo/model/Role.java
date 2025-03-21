@@ -26,7 +26,9 @@ public class Role implements GrantedAuthority {
         this.id = id;
         this.name = name;
     }
+
     public Role() {}
+
     public Role(String name) {
         this.name = name;
     }
@@ -49,9 +51,11 @@ public class Role implements GrantedAuthority {
     public String getName() {
         return name;
     }
+
     public void setName(String name) {
         this.name = name;
     }
+
     @Override
     public String toString() {
         return this.name; // Возвращает название роли (например, "ROLE_ADMIN")

@@ -1,20 +1,17 @@
 package ru.kata.spring.boot_security.demo.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
-import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
 import ru.kata.spring.boot_security.demo.model.Role;
 import ru.kata.spring.boot_security.demo.model.User;
 import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
-//import jakarta.validation.Valid;
 
 import java.util.List;
-import java.util.Set;
+
 
 @Controller
 @RequestMapping("/admin")
@@ -31,7 +28,6 @@ public class AdminController {
     }
 
     @GetMapping
-    //@PreAuthorize("hasRole('ADMIN')")
     public String adminPanel(Model model) {
         List<User> users = userService.getAllUsers();
         model.addAttribute("users", users);
@@ -39,14 +35,12 @@ public class AdminController {
     }
 
     @GetMapping("/add")
-    //@PreAuthorize("hasRole('ADMIN')")
     public String showAddUserForm(Model modal) {
         modal.addAttribute("user", new User());
         return "add";
     }
 
     @PostMapping("/add")
-    //@PreAuthorize("hasRole('ADMIN')")
     public String addUser(@ModelAttribute("user") User user) {
         userService.save(user);
         return "redirect:/admin";

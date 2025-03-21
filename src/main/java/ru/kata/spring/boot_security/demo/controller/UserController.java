@@ -17,10 +17,12 @@ public class UserController {
     private final UserService userService;
     private final RoleService roleService;
     @Autowired
+
     public UserController(UserService userService, RoleService roleService) {
         this.userService = userService;
         this.roleService = roleService;
     }
+
     @GetMapping("/")
     public String home(Model model) {
         return "login";
